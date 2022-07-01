@@ -1,0 +1,18 @@
+[_] use token to make requests
+[x] query gist info
+    [x] author
+    [x] language
+    [x] filename
+    [x] size
+    [x] descrition
+    [x] create & updated at 
+
+[x] display info
+    [x] $ gist <id> --info
+        [x] owner login
+        [x] description
+        [x] gist id
+        [x] created/updated at
+        [x] files
+[x] display the content
+    [x] $ gist <id> --content
