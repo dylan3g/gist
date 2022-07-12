@@ -27,7 +27,7 @@ You can use [bat](https://github.com/sharkdp/bat)
 $ gist <id> --content | bat -l <language>
 ```
 ## Authentication
-If you hava a Github Access Token, create a file in you `.config` directory:
+If you hava a Github Access Token, create a file `gits.json` in you `.config` directory:
 ```json
 {
     "token": "super-secret-token"
