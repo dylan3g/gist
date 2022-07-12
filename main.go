@@ -10,25 +10,29 @@ import (
 
 func usage() {
 	fmt.Println("gist v0.1.0")
-    fmt.Println("Usage: gist <id> [--info|--content]")
-    fmt.Println("Flags:")
-    fmt.Println("   --info: Fetch information abount a gist.")
-    fmt.Println("   --content: Print the gist content to stdout.")
-    fmt.Println("   --help: Display this message.")
+	fmt.Println("Usage: gist <id> [--info|--content]")
+	fmt.Println("Flags:")
+	fmt.Println("   --info: Fetch information abount a gist.")
+	fmt.Println("   --content: Print the gist content to stdout.")
+	fmt.Println("   --help: Display this message.")
 }
 
 func main() {
 	args := os.Args
+    config, err := NewConfig("gist.json")
+    if err != nil {
+        log.Fatal(err)
+    }
 	if len(args) < 2 {
 		usage()
 		os.Exit(1)
 	}
 
-    if args[1] == "--help" {
-        usage()
-        os.Exit(1)
-    }
-	gist, err := api.Get(args[1])
+	if args[1] == "--help" {
+		usage()
+		os.Exit(1)
+	}
+	gist, err := api.Get(args[1], *config.AuthToken)
 	if err != nil {
 		log.Fatal(err)
 	}

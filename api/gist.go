@@ -39,10 +39,16 @@ type File struct {
 
 const API_BASE_URL = "https://api.github.com/"
 
-func Get(id string) (*Gist, error) {
+func Get(id string, token string) (*Gist, error) {
 	url := fmt.Sprintf("%sgists/%s", API_BASE_URL, id)
 	client := &http.Client{}
-	res, err := client.Get(url)
+    req, err := http.NewRequest("GET", url, nil)
+    req.Header.Add("Authorization", "token" + token)
+    req.Header.Add("Accept", "application/vnd.github+json")
+    if err != nil {
+		log.Fatal(err)
+	}
+    res, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err)
 	}
